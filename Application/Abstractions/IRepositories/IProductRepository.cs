@@ -1,0 +1,15 @@
+using System.Linq.Expressions;
+using Domain.Entities;
+
+namespace Application.Abstractions.IRepositories;
+
+public interface IProductRepository : IBaseRepository<Product>
+{
+    Task<Product> GetAsync(string id);
+    Task<Product> GetAsync(Expression<Func<Product, bool>> expression);
+    Task<IEnumerable<Product>> GetSelectedAsync(Expression<Func<Product, bool>> expression);
+    Task<Product> GetProductByCategoryAsync(string categoryId);
+    Task<IEnumerable<Product>> GetAllProductAsync();
+    Task<Product> GetByPriceAsync(decimal price);
+    Task<Product> GetProductByBrandAsync(string brandId);
+}
