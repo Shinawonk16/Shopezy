@@ -8,6 +8,6 @@ public class LikeDto
 }
   public class CreateLikeRequestModel
     {
-        public int UserId { get; set; }
-        public int ReviewId { get; set; }
+        public string UserId { get; set; }
+        public string ReviewId { get; set; }
     }

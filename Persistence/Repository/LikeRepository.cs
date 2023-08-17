@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Application.Abstractions.IRepositories;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -11,11 +12,20 @@ public class LikeRepository : BaseRepository<Like>, ILikeRepository
     {
         
     }
-    public async Task<IEnumerable<Like>> GetLikesByReviewIdAsync(string reviwId)
+    public async Task<IEnumerable<Like>> GetLikesAsync(string reveiwId)
     {
         return await _context.Likes
         .Include(u => u.User)
-        .Where(c => c.IsDeleted == false && c.Review.Id == reviwId)
+        .Where(c => c.IsDeleted == false && c.Review.Id == reveiwId)
         .ToListAsync();
+    }
+
+    public async Task<Like> GetLikeAsync(Expression<Func<Like, bool>> expression)
+    {
+         return await _context.Likes
+        .Include(u => u.User)
+        .ThenInclude(u => u.Customer)
+        .Where(c => c.IsDeleted == false)
+        .SingleOrDefaultAsync();
     }
 }

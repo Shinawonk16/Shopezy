@@ -2174,6 +2174,7 @@
           "Paystack.Net": "1.1.0",
           "Pomelo.EntityFrameworkCore.MySql": "6.0.2",
           "StackExchange.Redis": "2.6.122",
+          "Swashbuckle.AspNetCore": "6.2.3",
           "sib_api_v3_sdk": "3.3.0"
         },
         "compile": {

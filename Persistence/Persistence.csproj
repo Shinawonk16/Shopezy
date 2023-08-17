@@ -10,6 +10,7 @@
     <PackageReference Include="Paystack.Net" Version="1.1.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
     <PackageReference Include="sib_api_v3_sdk" Version="3.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="StackExchange.Redis" Version="2.6.122" />
   </ItemGroup>
   <ItemGroup>

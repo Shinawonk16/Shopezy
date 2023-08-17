@@ -23,8 +23,8 @@ public class RedisService : IRedisService
                 // If data not found in cache, fetch it from the original source (e.g., database)
                 // and store it in the cache for future use.
                 // FetchDataFromOriginalSource()
-                string data = _redisModule.();
-                _redisCacheService.Set(key, data, TimeSpan.FromMinutes(80));
+                // string data = _redisModule.();
+                // _redisCacheService.Set(key, data, TimeSpan.FromMinutes(80));
             }
 
             return cachedData;

@@ -6,6 +6,7 @@ public class Product : BaseEntity
 {
     public Brand Brand { get; set; }
     public string BrandId { get; set; }
+    public ICollection<Request> Request { get; set; } = new HashSet<Request>();
     public List<Review> Review { get; set; }
     public Category Category { get; set; }
     public string CategoryId { get; set; }

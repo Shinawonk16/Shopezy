@@ -11,8 +11,8 @@ using Persistence.Context;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230802101934_middlecreate")]
-    partial class middlecreate
+    [Migration("20230815144516_secondscreate")]
+    partial class secondscreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -394,6 +394,48 @@ namespace Persistence.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Request", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("AdditionalNote")
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal>("Cost")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("ProductId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Requests");
+                });
+
             modelBuilder.Entity("Domain.Entities.Review", b =>
                 {
                     b.Property<string>("Id")
@@ -601,8 +643,8 @@ namespace Persistence.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("Code")
-                        .HasColumnType("longtext");
+                    b.Property<int>("Code")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
@@ -641,7 +683,7 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Like", b =>
                 {
                     b.HasOne("Domain.Entities.Review", "Review")
-                        .WithMany()
+                        .WithMany("Likes")
                         .HasForeignKey("ReviewId");
 
                     b.HasOne("Domain.Entities.User", "User")
@@ -726,6 +768,15 @@ namespace Persistence.Migrations
                     b.Navigation("Brand");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Request", b =>
+                {
+                    b.HasOne("Domain.Entities.Product", "Product")
+                        .WithMany("Request")
+                        .HasForeignKey("ProductId");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Domain.Entities.Review", b =>
@@ -826,7 +877,14 @@ namespace Persistence.Migrations
 
                     b.Navigation("OrderProducts");
 
+                    b.Navigation("Request");
+
                     b.Navigation("Review");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Review", b =>
+                {
+                    b.Navigation("Likes");
                 });
 
             modelBuilder.Entity("Domain.Entities.Role", b =>

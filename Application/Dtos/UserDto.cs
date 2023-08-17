@@ -13,7 +13,8 @@ public class UserDto
     public string ProfilePicture { get; set; }
     public string Password { get; set; }
     public Gender Gender { get; set; }
-    public IEnumerable<RoleDto> RoleDtos { get; set; }
+    public string Role { get; set; }
+    public string RoleDescription { get; set; }
 }
 public class LoginUserRequsetModel
 {

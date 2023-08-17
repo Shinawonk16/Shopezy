@@ -25,5 +25,7 @@ public interface IApplicationDbContext
     public DbSet<Sales> Sales { get; set; }
     // public DbSet<Wallet> Wallets { get; set; }
     public DbSet<Verification> Verifications { get; set; }
+    public DbSet<Request> Requests { get; set; }
+
 
 }

@@ -11,8 +11,8 @@ using Persistence.Context;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230731141020_initialcreate")]
-    partial class initialcreate
+    [Migration("20230814142243_newcreate")]
+    partial class newcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -154,7 +154,42 @@ namespace Persistence.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Manager", b =>
+            modelBuilder.Entity("Domain.Entities.Like", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("ReviewId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReviewId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Likes");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Managers", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -188,7 +223,7 @@ namespace Persistence.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Managers");
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("Domain.Entities.Order", b =>
@@ -198,9 +233,6 @@ namespace Persistence.Migrations
 
                     b.Property<string>("AddressId")
                         .HasColumnType("varchar(255)");
-
-                    b.Property<string>("CartId")
-                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
@@ -362,6 +394,42 @@ namespace Persistence.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Request", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<decimal>("Cost")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("ProductId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Requests");
+                });
+
             modelBuilder.Entity("Domain.Entities.Review", b =>
                 {
                     b.Property<string>("Id")
@@ -385,8 +453,14 @@ namespace Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<string>("PostedTime")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("ProductId")
                         .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("Seen")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
@@ -398,37 +472,6 @@ namespace Persistence.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Reviews");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Rider", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("longtext");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Riders");
                 });
 
             modelBuilder.Entity("Domain.Entities.Role", b =>
@@ -460,37 +503,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("Domain.Entities.SaleRep", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("longtext");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("SaleReps");
                 });
 
             modelBuilder.Entity("Domain.Entities.Sales", b =>
@@ -525,37 +537,6 @@ namespace Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Sales");
-                });
-
-            modelBuilder.Entity("Domain.Entities.SuperAdmin", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("longtext");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("SuperAdmins");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -599,6 +580,9 @@ namespace Persistence.Migrations
                     b.Property<string>("ProfilePicture")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Token")
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -610,7 +594,7 @@ namespace Persistence.Migrations
                     b.HasIndex("AddressId")
                         .IsUnique();
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Domain.Entities.UserRole", b =>
@@ -653,8 +637,8 @@ namespace Persistence.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("Code")
-                        .HasColumnType("longtext");
+                    b.Property<int>("Code")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
@@ -690,15 +674,30 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Manager", b =>
+            modelBuilder.Entity("Domain.Entities.Like", b =>
                 {
-                    b.HasOne("Domain.Entities.Product", "Product")
-                        .WithOne("Manager")
-                        .HasForeignKey("Domain.Entities.Manager", "ProductId");
+                    b.HasOne("Domain.Entities.Review", "Review")
+                        .WithMany("Likes")
+                        .HasForeignKey("ReviewId");
 
                     b.HasOne("Domain.Entities.User", "User")
-                        .WithOne("Manager")
-                        .HasForeignKey("Domain.Entities.Manager", "UserId");
+                        .WithMany("Likes")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Review");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Managers", b =>
+                {
+                    b.HasOne("Domain.Entities.Product", "Product")
+                        .WithOne("Managers")
+                        .HasForeignKey("Domain.Entities.Managers", "ProductId");
+
+                    b.HasOne("Domain.Entities.User", "User")
+                        .WithOne("Managers")
+                        .HasForeignKey("Domain.Entities.Managers", "UserId");
 
                     b.Navigation("Product");
 
@@ -765,6 +764,15 @@ namespace Persistence.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Request", b =>
+                {
+                    b.HasOne("Domain.Entities.Product", "Product")
+                        .WithMany("Request")
+                        .HasForeignKey("ProductId");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Domain.Entities.Review", b =>
                 {
                     b.HasOne("Domain.Entities.Customer", "Customer")
@@ -780,24 +788,6 @@ namespace Persistence.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Rider", b =>
-                {
-                    b.HasOne("Domain.Entities.User", "User")
-                        .WithOne("Rider")
-                        .HasForeignKey("Domain.Entities.Rider", "UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Domain.Entities.SaleRep", b =>
-                {
-                    b.HasOne("Domain.Entities.User", "User")
-                        .WithOne("SaleRep")
-                        .HasForeignKey("Domain.Entities.SaleRep", "UserId");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Domain.Entities.Sales", b =>
                 {
                     b.HasOne("Domain.Entities.Order", "Order")
@@ -805,15 +795,6 @@ namespace Persistence.Migrations
                         .HasForeignKey("Domain.Entities.Sales", "OrderId");
 
                     b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("Domain.Entities.SuperAdmin", b =>
-                {
-                    b.HasOne("Domain.Entities.User", "User")
-                        .WithOne("SuperAdmin")
-                        .HasForeignKey("Domain.Entities.SuperAdmin", "UserId");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -886,11 +867,18 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Product", b =>
                 {
-                    b.Navigation("Manager");
+                    b.Navigation("Managers");
 
                     b.Navigation("OrderProducts");
 
+                    b.Navigation("Request");
+
                     b.Navigation("Review");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Review", b =>
+                {
+                    b.Navigation("Likes");
                 });
 
             modelBuilder.Entity("Domain.Entities.Role", b =>
@@ -902,13 +890,9 @@ namespace Persistence.Migrations
                 {
                     b.Navigation("Customer");
 
-                    b.Navigation("Manager");
+                    b.Navigation("Likes");
 
-                    b.Navigation("Rider");
-
-                    b.Navigation("SaleRep");
-
-                    b.Navigation("SuperAdmin");
+                    b.Navigation("Managers");
 
                     b.Navigation("UserRoles");
                 });

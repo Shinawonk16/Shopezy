@@ -6,7 +6,7 @@ public class SalesDto
     public CustomerDto CustomerDto { get; set; }
     public string OrderId { get; set; }
     public string AddressId { get; set; }
-    public OrderDto OrderDtos { get; set; }
+    public List<OrderDto> OrderDtos { get; set; }
 }
 
 public class CreateSalesRequestModel

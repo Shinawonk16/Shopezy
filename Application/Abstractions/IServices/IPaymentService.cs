@@ -1,6 +1,7 @@
 using Application.Dtos;
 
-namespace Persistence.PaymentServices;
+namespace Application.Abstractions.IServices;
+
 
 public interface IPaymentService
 {

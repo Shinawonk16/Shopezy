@@ -185,6 +185,10 @@
               "target": "Package",
               "version": "[2.6.122, )"
             },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
             "sib_api_v3_sdk": {
               "target": "Package",
               "version": "[3.3.0, )"

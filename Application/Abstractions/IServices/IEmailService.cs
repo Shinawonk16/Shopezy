@@ -1,6 +1,7 @@
 using Application.Dtos;
 
-namespace Persistence.Email;
+namespace Application.Abstractions.IServices;
+
 
 public interface IEmailService
 {

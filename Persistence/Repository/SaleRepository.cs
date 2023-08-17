@@ -13,7 +13,7 @@ public class SaleRepository : BaseRepository<Sales>, ISaleRepository
     }
 
 
-    public async Task<IEnumerable<Sales>> GetAllSaleAsync()
+    public async Task<IList<Sales>> GetAllSaleAsync()
     {
         return await _context.Sales
         .Include(x => x.Order)
@@ -21,7 +21,7 @@ public class SaleRepository : BaseRepository<Sales>, ISaleRepository
         .ToListAsync();
     }
 
-    public async Task<IEnumerable<Sales>> GetAllSaleAsync(Expression<Func<Sales, bool>> expression)
+    public async Task<IList<Sales>> GetAllSaleAsync(Expression<Func<Sales, bool>> expression)
     {
         return await _context.Sales
         .Include(x => x.Order)
@@ -29,7 +29,7 @@ public class SaleRepository : BaseRepository<Sales>, ISaleRepository
         .ToListAsync();
     }
 
-    public async Task<IEnumerable<Sales>> GetAllSalesOfTheMonthAsync()
+    public async Task<IList<Sales>> GetAllSalesOfTheMonthAsync()
     {
         return await _context.Sales
      .Include(x => x.Order)
@@ -38,7 +38,7 @@ public class SaleRepository : BaseRepository<Sales>, ISaleRepository
      .ToListAsync();
     }
 
-    public async Task<IEnumerable<Sales>> GetAllSalesOfTheYearAsync()
+    public async Task<IList<Sales>> GetAllSalesOfTheYearAsync()
     {
         return await _context.Sales
        .Include(x => x.Order)
@@ -61,7 +61,7 @@ public class SaleRepository : BaseRepository<Sales>, ISaleRepository
         throw new NotImplementedException();
     }
 
-    public async Task<IEnumerable<Sales>> GetSaleByCustomerIdAsync(string customerId)
+    public async Task<IList<Sales>> GetSaleByCustomerIdAsync(string customerId)
     {
         return await _context.Sales
         .Include(c => c.Order)
@@ -94,4 +94,5 @@ public class SaleRepository : BaseRepository<Sales>, ISaleRepository
         .Where(x => x.CreatedAt.Year == year)
         .SumAsync(x => x.AmountPaid);
     }
+
 }

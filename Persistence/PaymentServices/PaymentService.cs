@@ -1,5 +1,6 @@
 using System.Text;
 using Application.Abstractions.IRepositories;
+using Application.Abstractions.IServices;
 using Application.Dtos;
 using Domain.Entities;
 
@@ -9,7 +10,7 @@ public class PaymentService : IPaymentService
 {
     private static readonly HttpClient client = new HttpClient();
 
-    const string mySecretKey = "sk_test_45e07756a2b653ff460f124e31d170e6a8a207d2";
+    const string mySecretKey = "";
 
     private readonly IPaymentRepository _paymentRepository;
     private readonly ICustomerRepository _customerRepository;

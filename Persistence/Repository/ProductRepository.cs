@@ -38,12 +38,13 @@ public class ProductRepository : BaseRepository<Product>, IProductRepository
             .SingleOrDefaultAsync(expression);
         }
 
-        public async Task<Product> GetByPriceAsync(decimal price)
+        public async Task<IEnumerable<Product>> GetByPriceAsync(decimal price)
         {
              return await _context.Products
             .Include(p => p.Category)
             .Include(p => p.Brand)
-            .SingleOrDefaultAsync(a => a.Price == price && a.IsDeleted == false);
+            .Where(a => a.Price == price && a.IsDeleted == false)
+            .ToListAsync();
         }
 
         public Task<Product> GetProductByBrandAsync(string brandId)
@@ -51,12 +52,13 @@ public class ProductRepository : BaseRepository<Product>, IProductRepository
             throw new NotImplementedException();
         }
 
-        public async Task<Product> GetProductByCategoryAsync(string categoryId)
+        public async Task<IEnumerable<Product>> GetProductByCategoryAsync(string categoryId)
         {
              return await _context.Products
             .Include(p => p.Category)
             .Include(p => p.Brand)
-            .SingleOrDefaultAsync(a => a.CategoryId == categoryId && a.IsDeleted == false);
+            .Where(a => a.CategoryId == categoryId && a.IsDeleted == false)
+            .ToListAsync();
         }
 
         public async Task<IEnumerable<Product>> GetSelectedAsync(Expression<Func<Product, bool>> expression)

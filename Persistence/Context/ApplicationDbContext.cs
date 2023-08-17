@@ -25,7 +25,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Customer> Customers { get; set; }
     public DbSet<UserRole> UserRoles { get; set; }
     public DbSet<Role> Roles { get; set; }
-    // public DbSet<Rider> Riders { get; set; }
+    public DbSet<Request> Requests { get; set; }
     // public DbSet<SaleRep> SaleReps { get; set; }
     public DbSet<OrderProduct> OrderProducts { get; set; }
     public DbSet<Order> Orders { get; set; }

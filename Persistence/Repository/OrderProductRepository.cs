@@ -48,7 +48,7 @@ public class OrderProductRepository : BaseRepository<OrderProduct>, IOrderProduc
             .ToListAsync();
     }
 
-    public async Task<OrderProduct> GetAsync(Expression<Func<OrderProduct, bool>> expression)
+    public async Task<IList<OrderProduct>> GetAsync(Expression<Func<OrderProduct, bool>> expression)
     {
         return await _context.OrderProducts
             .Include(x => x.Product)
@@ -57,7 +57,7 @@ public class OrderProductRepository : BaseRepository<OrderProduct>, IOrderProduc
             .ThenInclude(x => x.Customer)
             .ThenInclude(c => c.User)
             .Where(x => x.Order.IsDelivered == true)
-            .SingleOrDefaultAsync(expression);
+            .ToListAsync();
     }
 
     public async Task<IEnumerable<OrderProduct>> GetSelectedAsync(Expression<Func<OrderProduct, bool>> expression)
