@@ -34,7 +34,7 @@ public class ProductRepository : BaseRepository<Product>, IProductRepository
             return await _context.Products
             .Include(p => p.Category)
             .Include(p => p.Brand)
-            .Where(a => a.IsDeleted == false)
+            .Where(a => a.IsDeleted == false && a.IsAvailable == true)
             .SingleOrDefaultAsync(expression);
         }
 
@@ -43,7 +43,7 @@ public class ProductRepository : BaseRepository<Product>, IProductRepository
              return await _context.Products
             .Include(p => p.Category)
             .Include(p => p.Brand)
-            .Where(a => a.Price == price && a.IsDeleted == false)
+            .Where(a => a.Price == price && a.IsDeleted == false&& a.IsAvailable == true)
             .ToListAsync();
         }
 

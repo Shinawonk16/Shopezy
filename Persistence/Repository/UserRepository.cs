@@ -13,13 +13,13 @@ public class UserRepository : BaseRepository<User>,IUserRepository
 
     }
 
-    public async Task<UserRole> GetUserByRoleAsync(string roleId)
+    public async Task<IList<UserRole>> GetUserByRoleAsync(string role)
         {
             return await _context.UserRoles
             .Include(u => u.User)
             .Include(u => u.Role)
             .Where(u => u.IsDeleted == false)
-            .SingleOrDefaultAsync(r => r.Role.Id == roleId );
+            .ToListAsync();
         }
 
         public async Task<UserRole> LoginAsync(string email, string password)

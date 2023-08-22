@@ -2,6 +2,7 @@ namespace Application.Dtos;
 public class ReviewDto
 {
     public string Comment { get; set; }
+    public string Id { get; set; }
     public CustomerDto CustomerDto { get; set; }
     public string CustomerId { get; set; }
     public ProductDto ProductDto { get; set; }

@@ -8,7 +8,6 @@ public class Customer : BaseEntity
     public string UserId { get; set; }
     public List<Review> Review { get; set; }
     public List<Verification> Verifications { get; set; }
-
     public List<Payment> Payment { get; set; }
     public List<Order> Order { get; set; }
     public DateTime LastPurchaseDate { get; set; }

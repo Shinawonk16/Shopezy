@@ -15,7 +15,7 @@ public class ApplicationDbContext : DbContext
         if (!optionsBuilder.IsConfigured)
         {
             string connectionString = "server=localhost;user=root;port=3306;database=RenewedShope;password=1234";
-            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)); 
+            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
     }
 
@@ -26,6 +26,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<UserRole> UserRoles { get; set; }
     public DbSet<Role> Roles { get; set; }
     public DbSet<Request> Requests { get; set; }
+    public DbSet<Carts> Carts { get; set; }
+    public DbSet<CartItems> CartItems { get; set; }
     // public DbSet<SaleRep> SaleReps { get; set; }
     public DbSet<OrderProduct> OrderProducts { get; set; }
     public DbSet<Order> Orders { get; set; }
@@ -35,6 +37,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Brand> Brands { get; set; }
     public DbSet<Payment> Payments { get; set; }
     public DbSet<Product> Products { get; set; }
+    public DbSet<ProductQuantity> ProductQuantities { get; set; }
     public DbSet<Review> Reviews { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Sales> Sales { get; set; }

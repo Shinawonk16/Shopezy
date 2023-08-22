@@ -9,6 +9,7 @@ namespace Application.Dtos;
         public decimal Price { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
+        public bool IsAvailable { get; set; }
         public int Quantity { get; set; }
         public CategoryDto CategoryDto{get;set;}
         public BrandsDto BrandsDto{get;set;}

@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "Shopezy/1.0.0": {
         "dependencies": {
+          "Application": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.14",
           "Microsoft.EntityFrameworkCore.Design": "6.0.14",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.14",

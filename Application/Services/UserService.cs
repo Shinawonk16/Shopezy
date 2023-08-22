@@ -23,28 +23,30 @@ public class UserService : IUserService
         throw new NotImplementedException();
     }
 
-    public async Task<BaseResponse<UserDto>> GetUsersByRoleAsync(Role role)
+    public async Task<BaseResponse<IList<UserDto>>> GetUsersByRoleAsync(string role)
     {
-        var get = await _userRepository.GetUserByRoleAsync(role.Id);
+        var get = await _userRepository.GetUserByRoleAsync(role);
         if (get != null)
         {
-            return new BaseResponse<UserDto>
+            return new BaseResponse<IList<UserDto>>
             {
                 Message = "Found Successfully",
                 Status = true,
-                Data = new UserDto
+                Data = get.Select(x => new UserDto
                 {
-                    UserName = $"{get.User.FirstName} {get.User.LastName}",
-                    Email = get.User.Email,
-                    PhoneNumber = get.User.PhoneNumber,
-                    Id = get.User.Id,
-                    ProfilePicture = get.User.ProfilePicture,
-                    Role = get.Role.RoleName
+                    UserName = $"{x.User.FirstName} {x.User.LastName}",
+                    Email = x.User.Email,
+                    PhoneNumber = x.User.PhoneNumber,
+                    Id = x.User.Id,
+                    ProfilePicture = x.User.ProfilePicture,
+                    Role = x.Role.RoleName
                 }
+                ).ToList()
+                
             };
         }
 
-        return new BaseResponse<UserDto>
+        return new BaseResponse<IList<UserDto>>
         {
             Message = "Not Found",
             Status = false

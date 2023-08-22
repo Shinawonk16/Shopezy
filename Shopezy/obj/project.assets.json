@@ -6781,6 +6781,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Application >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 6.0.14",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.14",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.14",
@@ -6815,6 +6816,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "C:\\Users\\USER\\Desktop\\Abdul-Wareez\\Apis\\RenewedShopezy\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\USER\\Desktop\\Abdul-Wareez\\Apis\\RenewedShopezy\\Application\\Application.csproj"
+            },
             "C:\\Users\\USER\\Desktop\\Abdul-Wareez\\Apis\\RenewedShopezy\\Persistence\\Persistence.csproj": {
               "projectPath": "C:\\Users\\USER\\Desktop\\Abdul-Wareez\\Apis\\RenewedShopezy\\Persistence\\Persistence.csproj"
             }

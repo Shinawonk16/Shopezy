@@ -10,7 +10,7 @@ public class PaymentService : IPaymentService
 {
     private static readonly HttpClient client = new HttpClient();
 
-    const string mySecretKey = "";
+    const string mySecretKey = "sk_test_e363cf351fa1d32898025e2f96513da3cd091b08";
 
     private readonly IPaymentRepository _paymentRepository;
     private readonly ICustomerRepository _customerRepository;

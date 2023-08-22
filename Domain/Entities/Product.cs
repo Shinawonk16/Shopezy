@@ -17,6 +17,7 @@ public class Product : BaseEntity
     public int Quantity { get; set; }
     public string Image { get; set; }
     public string Description { get; set; }
+    public bool IsAvailable { get; set; }
     public ICollection<OrderProduct> OrderProducts { get; set; } = new HashSet<OrderProduct>();
 
 }

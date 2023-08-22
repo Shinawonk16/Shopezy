@@ -19,7 +19,11 @@ public interface IApplicationDbContext
     public DbSet<Brand> Brands { get; set; }
     public DbSet<Payment> Payments { get; set; }
     public DbSet<Product> Products { get; set; }
-    // public DbSet<Cart> Carts { get; set; }
+    
+    public DbSet<ProductQuantity> ProductQuantities { get; set; }
+    public DbSet<Carts> Carts { get; set; }
+    public DbSet<CartItems> CartItems { get; set; }
+
     public DbSet<Review> Reviews { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Sales> Sales { get; set; }

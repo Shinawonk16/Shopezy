@@ -24,8 +24,16 @@ public class CreateOrderRequestModel
 {
     public bool IsDelivered { get; set; } = false;
     public Address Address { get; set; }
-    public int Quantity { get; set; }
+    // public int Quantity { get; set; }
+    public List<OrderRequestModel> OrderRequestModels { get; set; }
+
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+}
+public class OrderRequestModel
+{
+        public string ProductId { get; set; }
+        public int Quantity { get; set; }
 
 }
 public class UpdateOrderRequestModel
